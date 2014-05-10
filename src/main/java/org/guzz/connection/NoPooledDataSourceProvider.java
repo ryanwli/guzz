@@ -20,7 +20,9 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -69,27 +71,33 @@ public class NoPooledDataSourceProvider implements DataSourceProvider{
 			this.user = props.getProperty("user") ;
 			this.password = props.getProperty("password") ;
 		}
-
+		
+		@Override
 		public Connection getConnection() throws SQLException {
 			return DriverManager.getConnection(jdbcUrl, user, password) ;
 		}
-
+		
+		@Override
 		public Connection getConnection(String username, String password) throws SQLException {
 			return DriverManager.getConnection(jdbcUrl, username, password) ;
 		}
-
+		
+		@Override
 		public PrintWriter getLogWriter() throws SQLException {
 			return pw;
 		}
-
+		
+		@Override
 		public int getLoginTimeout() throws SQLException {
 			return loginTimeout ;
 		}
-
+		
+		@Override
 		public void setLogWriter(PrintWriter out) throws SQLException {
 			this.pw = out ;
 		}
 
+		@Override
 		public void setLoginTimeout(int seconds) throws SQLException {
 			this.loginTimeout = seconds ;
 		}
@@ -98,7 +106,8 @@ public class NoPooledDataSourceProvider implements DataSourceProvider{
 		 * not supported.
 		 * @since 1.6
 		 */
-		public boolean isWrapperFor(Class iface) throws SQLException {
+		@Override
+		public boolean isWrapperFor(Class<?> iface) throws SQLException {
 			return false;
 		}
 
@@ -106,8 +115,14 @@ public class NoPooledDataSourceProvider implements DataSourceProvider{
 		 * not supported.
 		 * @since 1.6
 		 */
+		@Override
 		public <T> T unwrap(Class<T> iface) throws SQLException {
 			return null;
+		}
+
+		@Override
+		public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+			return Logger.getGlobal();
 		}		
 	}
 

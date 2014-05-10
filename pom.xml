@@ -8,11 +8,6 @@
 	<name>guzz core</name>
 	<description>A java full stack data-layer solution framework with many unique features.</description>
 	<url>http://code.google.com/p/guzz/</url>
-	<parent>
-	    <groupId>org.sonatype.oss</groupId>
-	    <artifactId>oss-parent</artifactId>
-	    <version>7</version>
-	</parent>
 	<licenses>
 	    <license>
 	    	<name>The Apache Software License, Version 2.0</name>
@@ -20,11 +15,6 @@
 	      	<distribution>repo</distribution>
 		</license>
 	</licenses>
-	<scm>
-	    <connection>scm:svn:http://guzz.googlecode.com/svn/trunk/</connection>
-	    <developerConnection>scm:svn:https://guzz.googlecode.com/svn/trunk/</developerConnection>
-	    <url>http://guzz.googlecode.com/svn/trunk/</url>
-	</scm>
 	<developers>
 	    <developer>
 	      <id>liukaixuan</id>
@@ -43,7 +33,7 @@
 	<properties>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	    <lib.spring.version>3.0.5.RELEASE</lib.spring.version>
+	    <lib.spring.version>4.0.2.RELEASE</lib.spring.version>
 	</properties>
 
 	<dependencies>
@@ -247,8 +237,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>2.3.2</version>
 					<configuration>
-						<source>1.5</source>
-						<target>1.5</target>
+						<source>1.6</source>
+						<target>1.6</target>
                     </configuration>
 				</plugin>
 
